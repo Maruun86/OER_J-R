@@ -11,14 +11,14 @@ OERIA ist ein Jump&Run Projekt das im Rahmen einer OER Einführung in Unity ents
 Unity kann auf der Webseite <https://unity.com/de> heruntergeladen werden. Die Installation erklärt sich von selbst.
 
 Am Ende finden wir uns mit dem Unity Hub konfrontiert.
-![Unity Hub](docs/img/Unityhub.png)
+![Unity Hub](docs/Unityhub.png)
 
 Hier erstellen wir unter **Projects** ein **New Project**  
 Geben dem Projekt ein Namen und setzen den Speicherort fest.
-![Unity Hub New](docs/img/Unityhub_New.png)
+![Unity Hub New](docs/Unityhub_New.png)
 Mit **Create Projekt** beginnt Unity das Projekt zu erstellen
 
 ## Kapitel 2 - Unity Editor: Scenen
 Willkommen im Unity Editor!
-![Unity Editor Start](docs/img/UnityEditor.png)
+![Unity Editor Start](docs/UnityEditor.png)
 
