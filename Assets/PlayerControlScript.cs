@@ -11,7 +11,7 @@ public class PlayerControlScript : MonoBehaviour
 
     private Vector2 _moveDiretion;
 
-    private float airSpeed;
+    private float _airSpeed;
     public InputActionReference move;
     public InputActionReference jump;
 
@@ -25,21 +25,15 @@ public class PlayerControlScript : MonoBehaviour
         
       if (isGrounded())
       {
-        
+
         if (isJumping())
         {
-            Debug.Log("Trying to Jump");
             rb.AddForceY(jumpForce, ForceMode2D.Impulse);
             
-            airSpeed = rb.linearVelocityX;
-            _moveDiretion.x = airSpeed;    
+            _airSpeed = rb.linearVelocityX;
+            _moveDiretion.x = _airSpeed;    
         }
-      }else 
-      {
-        //In air half movements
-        
-      }       
-
+      }
     }
     void FixedUpdate()
     {

@@ -5,6 +5,7 @@ OERIA ist ein Jump&Run Projekt das im Rahmen einer OER Einführung in Unity ents
 Dabei werden Themen wir Scenenerstellung, Objektplazierung, Kamera und Steuerung angesprochen.
 
 ## Inhaltsverzeichniss
+
 - [OER - OERIA](#oer---oeria)
   - [Einleitung](#einleitung)
   - [Inhaltsverzeichniss](#inhaltsverzeichniss)
@@ -13,8 +14,9 @@ Dabei werden Themen wir Scenenerstellung, Objektplazierung, Kamera und Steuerung
   - [Kapitel 3 - Einleitung Testscenario](#kapitel-3---einleitung-testscenario)
   - [Kapitel 3.1 - Erstellung von Objekten und Spieler](#kapitel-31---erstellung-von-objekten-und-spieler)
   - [Kapitel 3.2 - Levelphysik](#kapitel-32---levelphysik)
-  - [](#)
   - [Kapitel 3.3 Steuerung](#kapitel-33-steuerung)
+
+
 ## Kapitel 1 - Installation von Unity und Projekt Erstellung
 Unity kann auf der [Webseite](https://unity.com/de) heruntergeladen werden. Die Installation erklärt sich von selbst.
 
@@ -101,6 +103,7 @@ Wir drücken **Add Component** wählen **Physics 2D** und **Rigidbody 2D** bei *
 wichtig den **Body Type** auf **Static** zu stellen.
 
 ![Unity Editor InspectorAddComponent](docs/UnityEditor_AddRigidBody.gif)
+
 ---
 > **Erläuterung: Body Type : Static**  
 >**Body Type** legt im Grunde fest wie das Objekt simuliert wird. **Static** sagt aus es ist Teil
@@ -155,4 +158,91 @@ Wir erstellen ein nues Script mit im unerem **Assets** Fenster. Rechtsclick->*Cr
 Das öffnen wir mit unserem Editor des vertrauens.
 ![Unity Editor PlayerControlScript](docs/UnityEditor_PlayerControlScript_1.PNG)
 
+Hier werden wir ein paar änderungen vornehmen. Vorweg wir benennen die Klasse um. Von **MonoBehaviourScript** zu **PlayerControlScript**.
 
+Wir erläutern nun erstmal was wir genau in diesem Script reinschreiben.
+Im großen ganzen werden Bewegungen von Objekten mit der PhysikEngine vorgenommen. 
+
+Dafür brauchen wir ein Verweis auf das **Rigidbody2D** *rb*. Wir setzen uns einen float für die Bewegungsgeschwindigkeit in diesem Fall **movespeed** und Sprungstärke mit **jumpForce**.  
+
+Dann brauchen wir einen Vector2 für die Bewegungsrichtung **_moveDirection**.
+Am wichtigsten sind die beiden **InputActionReference** *move* und *jump*
+hierüber können wir unseren Input auslesen
+
+In der **Update** Funktion lesen wir den Wert unserer *move*-Aktion raus.
+Das wird unsere Begegungsrichtung in Form eines **Vector2**.
+
+im **FixedUpdate** benutzen wir unsere Bewegungsrichtung * Bewegungsgeschwindigkeit um einen linearen Vector für unseren Spieler zu geben das sich in Bewegungs auswirkt.
+
+Kurze Erklärung zum unterschied zwischen **Update** und **FixedUpdate**.
+
+**Update** wird mit jedem Frame durchgeführt wärend **FixedUpdate** einen Intervall folgt die dem Physiksystem entspricht und hat einen festen Zeitpunkt innerhalb eines Frames und läuft unabhängig von normalen **Update**.
+
+Am Ende sieht unsere PlayerControlScript wie folgt aus.
+
+```csharp
+  using System.Runtime.CompilerServices;
+  using UnityEngine;
+  using UnityEngine.InputSystem;
+
+  public class PlayerControlScript : MonoBehaviour
+  {
+      public Rigidbody2D rb;
+
+      public float moveSpeed;
+      public float jumpForce = 10f;
+
+      private Vector2 _moveDiretion;
+
+      private float _airSpeed;
+      public InputActionReference move;
+      public InputActionReference jump;
+
+      bool isGrounded() { return rb.linearVelocity.y == 0;}
+      bool isJumping () { return jump.action.inProgress;}
+
+      // Update is called once per frame
+      void Update()
+      {  
+          _moveDiretion = move.action.ReadValue<Vector2>();
+          
+        if (isGrounded())
+        {
+
+          if (isJumping())
+          {
+              rb.AddForceY(jumpForce, ForceMode2D.Impulse);
+              
+              _airSpeed = rb.linearVelocityX;
+              _moveDiretion.x = _airSpeed;    
+          }
+        }
+      }
+      void FixedUpdate()
+      {
+        if (isGrounded())
+        {
+          rb.linearVelocity = new Vector2(x: _moveDiretion.x * moveSpeed, y: rb.linearVelocityY);
+        }else
+        {
+          rb.linearVelocity = new Vector2(x: rb.linearVelocityX, y: rb.linearVelocityY);
+        }
+      }
+     
+```
+Dies ist nur ein Beispiel ist nicht "Best in Case" probiert es selbst aus bis ihr zufrieden seit mit der Bewegung.
+
+Doch bevor sich irgendetwas bewegt müssen wir unser Script auch dem Player zuweisen.
+Dafür nutzen wir wieder **Add Component** -> **Scripts** und dort müssten wir unser PlayerControlScript finden.
+
+Zudem werdet ihr festellen das alle *public* Variablen in der *Component* wiederzufinden sind. 
+
+![Unity Editor AddPlayerControlScript](docs/UnityEditor_AddPlayerControlScript.gif)
+
+Wir wählen für *rb* den **RigiidBody2d** unsere Spielers aus. Setzen das gewünschte *movespeed* und *jumpForce* zum Abschluss müssen wir die Jump&Run/Move zu **Move** zuweisen und die Jump&Run/Jump für **Jump**.
+
+Das ist unsere Inputverbindung zur **ActionMap**.
+
+![Unity Editor AddPlayerControlScript](docs/UnityEditor_JumpRun.gif)
+
+Damit haben wir das Ziel für dieses kleine OER erreicht.
