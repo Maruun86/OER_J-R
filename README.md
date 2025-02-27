@@ -14,7 +14,7 @@ Dabei werden Themen wir Scenenerstellung, Objektplazierung, Kamera und Steuerung
   - [Kapitel 3 - Einleitung Testscenario](#kapitel-3---einleitung-testscenario)
   - [Kapitel 3.1 - Erstellung von Objekten und Spieler](#kapitel-31---erstellung-von-objekten-und-spieler)
   - [Kapitel 3.2 - Levelphysik](#kapitel-32---levelphysik)
-  - [Kapitel 3.3 Steuerung](#kapitel-33-steuerung)
+  - [Kapitel 3.3 - Steuerung](#kapitel-33---steuerung)
 
 
 ## Kapitel 1 - Installation von Unity und Projekt Erstellung
@@ -119,7 +119,7 @@ einen **Collider** als **Component** geben.
 Für den **Player** nehmen wir einen **Circle Collider 2D** und für den **Ground** nehmen wir
 einen **Box Collider 2D** beides unter **Physics 2D** zufinden.
 
-## Kapitel 3.3 Steuerung
+## Kapitel 3.3 - Steuerung
 
 An diesem Punkt werden wir die **Player** Steuerung implementieren. Dafür nutzne wir das neue **Input System Package** von Unity. Es gibt uns die flexibilität und vereinfacht das erweitern der Steuerung enorm.
 
