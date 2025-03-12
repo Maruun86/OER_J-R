@@ -57,4 +57,10 @@
         "Temp/": true
     },
     "dotnet.defaultSolution": "OER_J-R.sln"
+    "[markdown]": {
+    "editor.tabCompletion": "on",
+    "editor.quickSuggestions": true,
+    "editor.snippetSuggestions": "top"
+ },
+
 }

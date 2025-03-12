@@ -1,21 +1,20 @@
-# OER - OERIA
-## Einleitung
-OERIA ist ein Jump&Run Projekt das im Rahmen einer OER Einführung in Unity entstanden ist. In diesem Dokument werden die einzelenen Schritte erläutert für die Erstellung eines 2D Jump&Run.  
+<!--
+author:   Pierre Antonschmidts
+email:    pierrea@web.de
+version:  0.1.0
+language: en
+narrator: US English Female
+
+comment:  Einfacher Kurs für Unity. Erstellung einer Scene und Einführung in Objekte und Steuerung für ein Jump & Run Scenario.
+          Multiline is also okay.
+
+link:     https://github.com/Maruun86/OER_J-R
+-->
+
+# Unity - Anfänge eines Jump&Run
+Dies ist Jump&Run Projekt das im Rahmen einer OER Einführung in Unity entstanden ist. In diesem Dokument werden die einzelenen Schritte erläutert für die Erstellung eines 2D Jump&Run.  
 
 Dabei werden Themen wir Scenenerstellung, Objektplazierung, Kamera und Steuerung angesprochen.
-
-## Inhaltsverzeichniss
-
-- [OER - OERIA](#oer---oeria)
-  - [Einleitung](#einleitung)
-  - [Inhaltsverzeichniss](#inhaltsverzeichniss)
-  - [Kapitel 1 - Installation von Unity und Projekt Erstellung](#kapitel-1---installation-von-unity-und-projekt-erstellung)
-  - [Kapitel 2 - Unity Editor: Übersicht](#kapitel-2---unity-editor-übersicht)
-  - [Kapitel 3 - Einleitung Testscenario](#kapitel-3---einleitung-testscenario)
-  - [Kapitel 3.1 - Erstellung von Objekten und Spieler](#kapitel-31---erstellung-von-objekten-und-spieler)
-  - [Kapitel 3.2 - Levelphysik](#kapitel-32---levelphysik)
-  - [Kapitel 3.3 - Steuerung](#kapitel-33---steuerung)
-
 
 ## Kapitel 1 - Installation von Unity und Projekt Erstellung
 Unity kann auf der [Webseite](https://unity.com/de) heruntergeladen werden. Die Installation erklärt sich von selbst.
@@ -60,8 +59,6 @@ Um die Erklärung zu vereinfachen haben wir die Abschnitte farblich hinterlegt.
 In den ersten Schritten beschäftigen wir uns mit der Erstellung eines Testscenarios. Am Ende von Kapitel 3
 haben wir ein simples Leveldesign, einen Spielcharakter sowie die Möglichkeit den Charakter zu bewegen.
 
-## Kapitel 3.1 - Erstellung von Objekten und Spieler
-
 Für den Anfang brauchen wir erstmal etwas aufdem wir stehen können. Dafür werden wir eine 
 2D Object nutzen in Form eines Quadrats. Das wird in der Scene positioniert und etwas 
 über den Kamerarand hinaus gestreckt.
@@ -92,7 +89,7 @@ wir **Objecte** nicht versehnlich bewegen. Dafür finden wir in der **Hierachy**
 
 Hiermit verstecken wir die **MainCamera**, **Global Light 2D** und sperren **Ground**.
 
-## Kapitel 3.2 - Levelphysik
+### Kapitel 3.1 - Levelphysik
 
 Mit diesem Schritt beschäftigen wir uns mit Unitys Physikengine. Dafür müssen wir **Objects** als
 physikalische Objekte kennzeichnen. Dies wird mit Hilfe von **Components** an **Objects** 
@@ -119,7 +116,7 @@ einen **Collider** als **Component** geben.
 Für den **Player** nehmen wir einen **Circle Collider 2D** und für den **Ground** nehmen wir
 einen **Box Collider 2D** beides unter **Physics 2D** zufinden.
 
-## Kapitel 3.3 - Steuerung
+### Kapitel 3.2 - Steuerung
 
 An diesem Punkt werden wir die **Player** Steuerung implementieren. Dafür nutzne wir das neue **Input System Package** von Unity. Es gibt uns die flexibilität und vereinfacht das erweitern der Steuerung enorm.
 
@@ -243,6 +240,7 @@ Wir wählen für *rb* den **RigiidBody2d** unsere Spielers aus. Setzen das gewü
 
 Das ist unsere Inputverbindung zur **ActionMap**.
 
+## Abschluss
 ![Unity Editor AddPlayerControlScript](docs/UnityEditor_JumpRun.gif)
 
 Damit haben wir das Ziel für dieses kleine OER erreicht.
